@@ -17,10 +17,9 @@ const render = (Component) => {
         // </Provider>,
         document.getElementById('root')
     );
+    registerServiceWorker();  // Runs register() as default function
 };
 
 render(App);
 
 if (module.hot) module.hot.accept('./App', () => render(App));
-
-registerServiceWorker();  // Runs register() as default function
