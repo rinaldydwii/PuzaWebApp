@@ -14,6 +14,6 @@ module.exports = merge(common, {
         port: port,
         historyApiFallback: true,
         open: true,
-        hot: true
+        hot: true,
     }
 });

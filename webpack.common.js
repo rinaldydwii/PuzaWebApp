@@ -1,13 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name].[hash].js',
+        filename: '[name].[hash:8].js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -49,35 +53,38 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('public/style.css', {
-            filename: 'style-[hash].css',
+        new ExtractTextPlugin('public/style-[hash:8].css', {
+            filename: 'style-[hash:8].css',
             disable: false,
             allChunks: true,
         }),
         new FaviconsWebpackPlugin({
-            logo: 'public/favicon.png',
-            prefix: 'favicons-[hash]/',
-            emitStats: false,
-            statsFilename: 'iconstats-[hash].json',
-            persistentCache: true,
-            inject: true,
-            icons: {
-              android: true,
-              appleIcon: true,
-              appleStartup: true,
-              coast: false,
-              favicons: true,
-              firefox: true,
-              opengraph: false,
-              twitter: false,
-              yandex: false,
-              windows: false
-            }
+            logo: './public/favicon.png',
+            prefix: 'assets/favicons/',
         }),
         new HtmlWebpackPlugin({
-            title: 'Puza Management App',
-            template: "public/index.html",
-            favicon: "public/favicon.ico"
-        })
+            template: 'public/index.html',
+            // favicon: 'public/favicon.png'
+        }),
+        new ManifestPlugin({
+            fileName: 'asset-manifest.json', // Not to confuse with manifest.json 
+        }),
+        new SWPrecacheWebpackPlugin({
+            dontCacheBustUrlsMatching: /\.\w{8}\./,
+            filename: 'service-worker.js',
+            logger(message) {
+                if (message.indexOf('Total precache size is') === 0) {
+                return;
+                }
+                console.log(message);
+            },
+            minify: true,
+            navigateFallback: '/index.html',
+            staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+        }),
+        new CopyWebpackPlugin([
+            './public/manifest.json',
+            './public/robots.txt' // define the path of the files to be copied
+        ])
     ],
 };
