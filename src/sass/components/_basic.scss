@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $roboto;
+    font-size: 14px;
+    font-weight: 400;
+    background: $lightBlue;
+    @include breakpoint(480px) {
+        font-size: 16px;
+    }
+}
+
+.nav-open {
+    .sidebar {
+        -webkit-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+    .main-panel {
+        -webkit-transform: translate3d(260px,0,0);
+        -ms-transform: translate3d(260px,0,0);
+        transform: translate3d(260px,0,0);
+    }
+}
+
+.container {
+    position: relative;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+img {
+	width: 100%;
+}
+
+hr {
+    height: 2px;
+    width: 40px;
+    background: $black;
+    border: none;
+    margin: 12px auto;
+}

@@ -29,7 +29,7 @@ module.exports = {
                             { 
                                 loader: 'css-loader',
                                 options: {
-                                    minimize: true
+                                    // minimize: true
                                 }
                             },
                             {
@@ -66,6 +66,7 @@ module.exports = {
             template: 'public/index.html',
             // favicon: 'public/favicon.png'
         }),
+        
         new ManifestPlugin({
             fileName: 'asset-manifest.json', // Not to confuse with manifest.json 
         }),

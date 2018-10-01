@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 
 import configureStore from './store';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker, { unregister } from './registerServiceWorker';
 
 // const store = configureStore();
 

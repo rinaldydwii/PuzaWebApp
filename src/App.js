@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import indexRoutes from './routes/index';
+import indexRoutes from './routes/Index';
 
 import './sass/style.scss';
 

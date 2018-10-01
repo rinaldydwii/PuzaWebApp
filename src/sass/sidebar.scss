@@ -1,0 +1,85 @@
+.nav-open {
+    .sidebar {
+        -webkit-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+}
+.sidebar {
+    position: fixed;
+    display: block;
+    top: 0;
+    height: 100%;
+    width: 260px;
+    right: auto;
+    left: 0;
+    z-index: 1032;
+    visibility: visible;
+    overflow-y: visible;
+    padding: 0;
+    -webkit-transition: all .5s cubic-bezier(.685,.0473,.346,1);
+    -o-transition: all .5s cubic-bezier(.685,.0473,.346,1);
+    transition: all .5s cubic-bezier(.685,.0473,.346,1);
+    -webkit-transform: translate3d(-260px,0,0);
+    -ms-transform: translate3d(-260px,0,0);
+    transform: translate3d(-260px,0,0);
+    background: linear-gradient(0deg, rgba(0, 10, 17, 0.75), rgba(0, 10, 17, 0.75)), linear-gradient(180deg, rgba(40, 120, 178, 0.25) 0%, rgba(54, 163, 225, 0.25) 57.46%, rgba(135, 213, 237, 0.25) 100%), url(../assets/sidebar-background.jpg);
+    .brand-logo {
+        padding: 15px;
+        position: relative;
+        img {
+            height: 30px;
+        }
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: calc(100% - 30px);
+            height: 1px;
+            background: $lightBlue;
+        }
+    }
+    .nav {
+        li {
+            > a {
+                margin: 10px 15px 0;
+                border-radius: 5px;
+                color: $white;
+                display: block;
+                text-decoration: none;
+                position: relative;
+                cursor: pointer;
+                padding: 14px 15px;
+                > svg {
+                    float: left;
+                    margin-right: 15px;
+                }
+                > span {
+                    display: block;
+                    > svg {
+                        float: right;
+                    }
+                }
+                &:hover {
+                    background-color: $hoverNav;
+                    -webkit-box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+                    box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+                }
+            }
+            &.active {
+                > a {
+                    background-color: $activeNav;
+                    -webkit-box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+                    box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+                    color: $greyText;
+                }
+            }
+            .collapse {
+                .nav li > a {
+                    padding: 12px 15px;
+                }
+            }
+        }
+    }
+}
